@@ -8,13 +8,13 @@ from langchain.llms import GooglePalm
 from langchain import PromptTemplate
 from langchain.chains import RetrievalQA
 
-PALM_API="AIzaSyAIzDH7NVopxUvOL8PAqBnKZqdmAoXeS28"
+PALM_API=""
 #palm.configure(api_key=PALM_API)
 
 
 def getmodel():
     "test"
-    PALM_API="AIzaSyAIzDH7NVopxUvOL8PAqBnKZqdmAoXeS28"
+    PALM_API=""
     embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
     db = FAISS.load_local("faiss", embeddings)
     retriever = db.as_retriever(search_kwargs={'k': 10})
