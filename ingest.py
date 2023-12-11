@@ -20,9 +20,9 @@ def pageextract(texts):
     PAGES=[]
     id=0
     while id<len(texts):
-        if (texts[id].metadata['page']-7)==len(PAGES):
+        if (texts[id].metadata['page'])==len(PAGES):
             temp=''
-            while id<len(texts) and (texts[id].metadata['page']-7)==len(PAGES) :
+            while id<len(texts) and (texts[id].metadata['page'])==len(PAGES) :
                 temp=temp+texts[id].page_content
                 id=id+1
             PAGES.append(copy.deepcopy(texts[0]))
