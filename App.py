@@ -10,6 +10,8 @@ import pprint
 from langchain.llms import GooglePalm
 from langchain import PromptTemplate
 from langchain.chains import RetrievalQA
+from langchain.chains.summarize import load_summarize_chain
+from tempfile import NamedTemporaryFile
 
 import streamlit
 import streamlit.web.cli as stcli
@@ -28,7 +30,7 @@ def resolve_path(path):
 
 
 while True:
-    choice=input(f"{'>>'*10} \n Choose : 0-> Ingest ; 1->Query ; 2->Exit \n : ")
+    choice=input(f"{'>>'*10} \n Choose : 0-> Ingest ; 1->Query ; 2->Summary ; 3->Exit \n : ")
     if choice=='0':
         from ingest import INGESTER
         print(f"\n\n{'>>'*10}INGESTING!{'<<'*10}\n")
@@ -54,7 +56,20 @@ while True:
         except:
             print("\n\nERROR WHILE INITIATING QUERYING!\n\n")
         #EXTRACT()
+
     elif choice=='2':
+        print("\nSTARTING Summary-ing!\n")
+        try:
+            sys.argv = [
+            "streamlit",
+            "run",
+            resolve_path("DocSumm.py"),
+            "--global.developmentMode=false",
+            ]
+            sys.exit(stcli.main())
+        except:
+            print("\n\nERROR WHILE INITIATING Summary-ing!\n\n")
+    elif choice=='3':
         print("Exiting!")
         break
     else:
