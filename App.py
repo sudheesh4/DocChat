@@ -30,7 +30,7 @@ def resolve_path(path):
 
 
 while True:
-    choice=input(f"{'>>'*10} \n Choose : 0-> Ingest ; 1->Query ; 2->Summary ; 3->Exit \n : ")
+    choice=input(f"{'>>'*10} \n Choose : 0-> Ingest ; 1->Query ; 2->Summary ; 3-> Quiz ; 4->Exit \n : ")
     if choice=='0':
         from ingest import INGESTER
         print(f"\n\n{'>>'*10}INGESTING!{'<<'*10}\n")
@@ -69,8 +69,22 @@ while True:
             sys.exit(stcli.main())
         except:
             print("\n\nERROR WHILE INITIATING Summary-ing!\n\n")
+
     elif choice=='3':
+        print("\nSTARTING Quiz-ing!\n")
+        try:
+            sys.argv = [
+            "streamlit",
+            "run",
+            resolve_path("DocQuiz.py"),
+            "--global.developmentMode=false",
+            ]
+            sys.exit(stcli.main())
+        except:
+            print("\n\nERROR WHILE INITIATING Quiz-ing!\n\n")
+    elif choice=='4':
         print("Exiting!")
         break
     else:
         print("Invalid choice!")
+        
